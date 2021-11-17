@@ -1,2 +1,2 @@
 # database-roadmap
-My roadmap learn database.
+My roadmap learning database.
