@@ -84,8 +84,19 @@ O volume foi criado como seguinte comando no terminal
 bash
 docker run --name mySQL-db-net -p3306:3306 -v mysql-volume:/var/lib/mysql  -it caiomaia3/mysql-image:version1 bash
 ```
+Para colocar o container para rodar basta dar start no container e depois executar um comando para rodar um serviço do mysql
 
-### Como instalar SQL Server
+```bash
+docker start mySQL-db-net
+docker exec mySQL-db-net service mysql start
+```
+Agora basta abrir o workbench e acessar o container. Uma outra forma e utilizar o client que instalamos previamente, bastando executar cliente ``mysql -u(user) -p(password) -h(host-ip).
+
+```bash
+mysql -usuporte -pInfo@1234 -h172.17.0.2
+```
+
+### Como instalar SQL Server (Microsoft)
 
 [Video](https://www.youtube.com/watch?v=vt6W_YBHH_E) de instalação
 
@@ -111,3 +122,37 @@ cd Downloads
 sudo apt install ./mysql-apt-config_0.8.16-1_all.deb
 sudo apt update
 sudo apt install mysql-workbench-community
+
+## Criando um Banco de dados e Tabelas
+
+Para criar um banco de dados basta entrar no ambeinte do mysql ou no workbench e rodar o seguinte query
+
+```sql
+create database cadastro;
+```
+Detalhe, como eu estou no ambiente linux, a configuração do ``charset`` e do ``collate`` são por padrão utf8. Caso precise configurar o banco com este padrão de caractere, basta rodar o seguinte query
+
+```sql
+create database cadastro
+default character set utf8
+default collate utf8_general_ci;
+```
+
+Em seguida podemos criar uma tabela da seguinte forma
+
+```sql
+use database cadastro;
+
+create table pessoas(
+id int not null auto_increment,
+nome varchar(30) not null,
+nascimento date,
+sexo enum('M','F'),
+peso decimal(5,2),
+altura decimal(3,2),
+nacionalidade varchar(30) default 'Brasil',
+primary key (id)
+) default charset =utf8;
+```
+
+
