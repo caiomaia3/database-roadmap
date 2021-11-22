@@ -155,4 +155,12 @@ primary key (id)
 ) default charset =utf8;
 ```
 
+## Instalando o PhpMyAdmin no docker
 
+Para isto basta fazer um link entre o container do server mysql criado com um container no phpMyAdmin a ser criado. Deste modo podemos utilizar o seguinte comando:
+
+```bash
+docker run --name phpMyAdmin -d --link mySQL-db-net:db -p 8080:80 phpmyadmin
+```
+
+Em seguida basta acessar o ip do host no navegador, que no nosso caso é: ``127.17.0.2:8080``.
