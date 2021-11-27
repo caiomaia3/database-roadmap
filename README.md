@@ -164,3 +164,5 @@ docker run --name phpMyAdmin -d --link mySQL-db-net:db -p 8080:80 phpmyadmin
 ```
 
 Em seguida basta acessar o ip do host no navegador, que no nosso caso é: ``127.17.0.2:8080``.
+
+As instruções para fazer esta configuração foram encontradas do neste [link](https://hub.docker.com/_/phpmyadmin).
